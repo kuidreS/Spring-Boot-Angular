@@ -1,0 +1,19 @@
+<h3>Add student</h3>
+<div [hidden]="submitted">
+  <div>
+    <label>First name:
+      <input #firstName />
+    </label>
+  </div>
+  <div>
+    <label>Last name:
+      <input #lastName />
+    </label>
+  </div>
+  <button (click)="create(firstName.value, lastName.value); firstName.value=''; lastName.value=''">Add</button>
+</div>
+<div [hidden]="!submitted">
+  <h4>The Student has been added.</h4>
+  <p>Do you want to create one more Student?</p>
+  <button (click)="continueCreating()">Yes</button>
+</div>

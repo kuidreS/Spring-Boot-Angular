@@ -1,0 +1,28 @@
+table {
+  width: 1024px;
+}
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table, th {
+  text-align: left;
+}
+table, caption {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+  color: #000;
+  background-color: #79BD8F;
+}
+table tr:nth-child(odd)	{
+  background-color: #BEEB9F;
+}
+table tr:nth-child(even) {
+  background-color: #FFFF9D;
+}
+table tr.highlight {
+  background-color: #00A388 !important;
+  color: #FFFF9D;
+}

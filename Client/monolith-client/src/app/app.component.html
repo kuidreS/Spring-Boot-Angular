@@ -1,0 +1,10 @@
+<div style="padding: 20px;" class="example-button-row">
+  <h1>{{title}}</h1>
+  <nav>
+      <button><a routerLink="students" role="button" routerLinkActive="active">Students</a></button>
+      <button><a routerLink="subjects" role="button" routerLinkActive="active">Subjects</a></button>
+      <button><a routerLink="exam" role="button" routerLinkActive="active">Create exam</a></button>
+  </nav>
+  <app-statistics></app-statistics>
+  <router-outlet></router-outlet>
+</div>

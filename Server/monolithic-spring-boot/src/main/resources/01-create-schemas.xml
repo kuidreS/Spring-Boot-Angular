@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="01" author="vserdiuk">
+        <createTable tableName="students">
+            <column name="student_id" type="bigint">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar(255)"></column>
+            <column name="last_name" type="varchar(255)"></column>
+        </createTable>
+
+        <createTable tableName="subjects">
+            <column name="subject_id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)"></column>
+        </createTable>
+
+        <createTable tableName="statistics">
+            <column name="statistics_id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="subject" type="varchar(255)"></column>
+            <column name="students" type="int"></column>
+            <column name="a" type="int"></column>
+            <column name="b" type="int"></column>
+            <column name="c" type="int"></column>
+            <column name="d" type="int"></column>
+            <column name="e" type="int"></column>
+            <column name="f" type="int"></column>
+        </createTable>
+
+        <createTable tableName="exams">
+            <column name="exam_id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="subject_id" type="bigint"></column>
+            <column name="student_id" type="bigint"></column>
+            <column name="ECTS" type="varchar(255)"></column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_exam2subject"
+                                 baseTableName="exams"
+                                 baseColumnNames="subject_id"
+                                 referencedTableName="subjects"
+                                 referencedColumnNames="subject_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_exam2student"
+                                 baseTableName="exams"
+                                 baseColumnNames="student_id"
+                                 referencedTableName="students"
+                                 referencedColumnNames="student_id"/>
+    </changeSet>
+</databaseChangeLog>

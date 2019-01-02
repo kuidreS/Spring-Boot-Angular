@@ -1,0 +1,40 @@
+<table align="center">
+  <caption>
+    <div align="center"><b>Students</b></div>
+    <div>
+      <div class="buttonBar"><button (click)="searchStudent()">Search</button></div>
+      <div class="buttonBar"><button (click)="addStudent()">Add</button></div>
+      <div class="buttonBar"><button (click)="deleteAllStudents()">Delete All</button></div>
+    </div>
+  </caption>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+  </tr>
+  <tr *ngFor="let student of students" (click)="onSelect(student)" [ngClass] = "{'highlight' : student == selectedStudent}">
+    <td *ngIf="updateStudentMode && student === selectedStudent">
+      <input value="{{student.firstName}}" [(ngModel)] = firstName />
+    </td>
+    <td *ngIf="!updateStudentMode">
+      {{student.firstName}}
+    </td>
+    <td *ngIf="updateStudentMode && student === selectedStudent">
+      <input value="{{student.lastName}}" [(ngModel)] = lastName />
+      <button (click)="update(firstName, lastName)">Save</button>
+    </td>
+    <td *ngIf="!updateStudentMode">
+      {{student.lastName}}
+      <button *ngIf="student === selectedStudent" (click)="updateStudent(student)">Update</button>
+      <button *ngIf="student === selectedStudent" (click)="deleteStudent(student)">Delete</button>
+    </td>
+  </tr>
+</table>
+<div>
+  <app-student-create *ngIf="addStudentVisible" (eventEmitter)='updateStudentList()'></app-student-create>
+  <button *ngIf="addStudentVisible" (click)="hideCreate()">Close</button>
+</div>
+<div>
+  <app-student-search *ngIf="searchStudentVisible" (eventEmitter)='updateStudentList()'></app-student-search>
+  <button *ngIf="searchStudentVisible" (click)="hideSearch()">Close</button>
+</div>
+

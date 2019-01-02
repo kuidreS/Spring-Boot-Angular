@@ -1,0 +1,28 @@
+<h3>Search subject</h3>
+<div [hidden]="submitted">
+  <div>
+    <label>Subject name:
+      <input [(ngModel)] = searchSubjectName />
+    </label>
+  </div>
+  <button (click)="search(searchSubjectName)">Search</button>
+</div>
+<div [hidden]="!submitted">
+  <table align="center">
+    <caption>
+      <div align="center"><b>Search result</b></div>
+    </caption>
+    <tr>
+      <td *ngIf="subject && updatedSubjectMode">
+        <input [(ngModel)] = updatedSubjectName />
+        <button (click)="updateSubject(updatedSubjectName)">Save</button>
+      </td>
+      <td *ngIf="subject && !updatedSubjectMode">
+        {{subject.name}}
+        <button (click)="updateSubjectMode()">Update</button>
+        <button (click)="deleteSubject()">Delete</button>
+      </td>
+    </tr>
+  </table>
+  <button class="btn btn-success" (click)="newSearch()">New search</button>
+</div>

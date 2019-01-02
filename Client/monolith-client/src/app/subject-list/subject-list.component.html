@@ -1,0 +1,29 @@
+<table align="center">
+  <caption>
+    <div align="center"><b>Subjects</b></div>
+    <div>
+      <div class="buttonBar"><button (click)="searchSubject()">Search</button></div>
+      <div class="buttonBar"><button (click)="addSubject()">Add</button></div>
+      <div class="buttonBar"><button (click)="deleteAllSubjects()">Delete All</button></div>
+    </div>
+  </caption>
+  <tr *ngFor="let subject of subjects" (click)="onSelect(subject)" [ngClass] = "{'highlight' : subject == selectedSubject}">
+    <td *ngIf="updateSubjectMode && subject === selectedSubject">
+      <input value="{{subject.name}}" [(ngModel)] = subjectName />
+      <button (click)="update(subjectName)">Save</button>
+    </td>
+    <td *ngIf="!updateSubjectMode">
+      {{subject.name}}
+      <button *ngIf="subject === selectedSubject" (click)="updateSubject()">Update</button>
+      <button *ngIf="subject === selectedSubject" (click)="deleteSubject()">Delete</button>
+    </td>
+  </tr>
+</table>
+<div>
+  <app-subject-create *ngIf="addSubjectVisible" (eventEmitter)='getList()'></app-subject-create>
+  <button *ngIf="addSubjectVisible" (click)="hideCreate()">Close</button>
+</div>
+<div>
+  <app-subject-search *ngIf="searchSubjectVisible" (eventEmitter)='getList()'></app-subject-search>
+  <button *ngIf="searchSubjectVisible" (click)="hideSearch()">Close</button>
+</div>

@@ -1,0 +1,32 @@
+table {
+  width: 1024px;
+}
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table, th {
+  text-align: center;
+}
+table, caption {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+  color: #000;
+  background-color: #FF9938;
+}
+table tr:nth-child(odd)	{
+  background-color: #FFC448;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+table tr.highlight {
+  background-color: #FF6838 !important;
+  color: #ffffff;
+}
+.buttonBar {
+  display: inline-block;
+  float: right;
+}

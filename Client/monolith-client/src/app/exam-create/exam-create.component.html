@@ -1,0 +1,32 @@
+<h3>Create exam for student</h3>
+<div id="createExam" [hidden]="submitted">
+  <div class="examParam">
+    <label>ECTS: </label>
+    <select [(ngModel)]="selectedEcts">
+      <option value="" disabled selected>Select ECTS</option>
+      <option *ngFor="let ects of ectsArray" [value]="ects">{{ects}}</option>
+    </select>
+  </div>
+  <div class="examParam">
+    <label>Student: </label>
+    <select [(ngModel)]="selectedStudent">
+      <option value="" disabled selected>Select student</option>
+      <option *ngFor="let student of students" [ngValue]="student">{{student.firstName}} {{student.lastName}}</option>
+    </select>
+  </div>
+  <div class="examParam">
+    <label>Subject: </label>
+    <select [(ngModel)]="selectedSubject">
+      <option value="" disabled selected>Select subject</option>
+      <option *ngFor="let subject of subjects" [ngValue]="subject">{{subject.name}}</option>
+    </select>
+  </div>
+  <div class="examParam">
+    <button (click)="create()">Create exam</button>
+  </div>
+</div>
+<div [hidden]="!submitted">
+  <h4>The Exam has been created.</h4>
+  <p>Do you want to create one more Exam?</p>
+  <button (click)="continueCreating()">Yes</button>
+</div>

@@ -1,0 +1,14 @@
+<h3>Add subject</h3>
+<div [hidden]="submitted">
+  <div>
+    <label>Subject name:
+      <input #name />
+    </label>
+  </div>
+  <button (click)="create(name.value); name.value=''">Add</button>
+</div>
+<div [hidden]="!submitted">
+  <h4>The Subject has been added.</h4>
+  <p>Do you want to create one more Subject?</p>
+  <button (click)="continueCreating()">Yes</button>
+</div>

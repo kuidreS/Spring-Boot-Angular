@@ -1,0 +1,52 @@
+<h3>Search student</h3>
+<div [hidden]="submitted">
+  <form (ngSubmit)="search(firstName.value, lastName.value); firstName.value=''; lastName.value=''" ngNativeValidate>
+    <div>
+      <label>First name:
+        <input #firstName required />
+      </label>
+    </div>
+    <div>
+      <label>Last name:
+        <input #lastName required />
+      </label>
+    </div>
+    <input value="search" type="submit" />
+  </form>
+</div>
+<div [hidden]="!submitted">
+  <table align="center">
+    <caption>
+      <div align="center"><b>Search result</b></div>
+    </caption>
+    <tr>
+      <th>ID</th>
+      <th>First name</th>
+      <th>Last name</th>
+    </tr>
+    <tr *ngFor="let student of students" (click)="onSelect(student)" [ngClass] = "{'highlight' : student == selectedStudent}">
+      <td *ngIf="updateStudentMode && student === selectedStudent">
+        {{student.id}}
+      </td>
+      <td *ngIf="!updateStudentMode">
+        {{student.id}}
+      </td>
+      <td *ngIf="updateStudentMode && student === selectedStudent">
+        <input value="{{student.firstName}}" [(ngModel)] = updatedFirstName />
+      </td>
+      <td *ngIf="!updateStudentMode">
+        {{student.firstName}}
+      </td>
+      <td *ngIf="updateStudentMode && student === selectedStudent">
+        <input value="{{student.lastName}}" [(ngModel)] = updatedLastName />
+        <button (click)="update(updatedFirstName, updatedLastName)">Save</button>
+      </td>
+      <td *ngIf="!updateStudentMode">
+        {{student.lastName}}
+        <button *ngIf="student === selectedStudent" (click)="updateStudent(student)">Update</button>
+        <button *ngIf="student === selectedStudent" (click)="deleteStudent(student)">Delete</button>
+      </td>
+    </tr>
+  </table>
+  <button class="btn btn-success" (click)="newSearch()">New search</button>
+</div>
